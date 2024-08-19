@@ -16,7 +16,28 @@ services:
     working_dir: /usr/src/app_be
     depends_on:
       - db
+      - data_service
     container_name: weather_python_container
+    command: python manage.py runserver 0.0.0.0:8000
+    # command: pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate
+
+  data_service:
+    build:
+      context: ./data_service
+      dockerfile: Dockerfile
+    ports:
+      - 8001:8000
+      # - 5678:5678
+    #volumes:
+    #  - ./backend/weather:/usr/src/app_be
+    volumes:
+      - type: bind
+        source: ./data_service
+        target: /usr/src/app_be
+    working_dir: /usr/src/app_be
+    depends_on:
+      - db
+    container_name: weather_data_service_container
     command: python manage.py runserver 0.0.0.0:8000
     # command: pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate
 
