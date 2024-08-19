@@ -1,0 +1,32 @@
+cd .\backend\ 
+py -m venv env  
+ ./env/scripts/activate.ps1
+ python -m pip install --upgrade pip  
+pip3 install django
+ pip3 install djangorestframework
+
+django-admin startproject weather
+py manage.py runserver
+
+cd .\weather\
+py manage.py startapp weather_api
+
+#We use django-environ package to manage .env in Django, let’s install it
+pip install django-environ
+pip install psycopg2
+pip freeze
+
+pip3 install debugpy  
+
+install -r requirements.txt  
+
+###
+pip3 install mysqlclient==1.4.6  
+ pip3 install mysql-connector-python     
+pip install mysqlclient==1.3.12  
+pip3 install mysqlclient-1.3.12-cp36-cp36m-win_amd64.whl  
+pip3 install ./mysqlclient-1.3.12-cp36-cp36m-win_amd64.whl  
+pip3 install pylint    
+ pip3 install jedi  
+pip3 install pyjwt  
+###

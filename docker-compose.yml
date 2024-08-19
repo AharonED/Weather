@@ -1,0 +1,70 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: ./backend/weather
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+      - 5678:5678
+    #volumes:
+    #  - ./backend/weather:/usr/src/app_be
+    volumes:
+      - type: bind
+        source: ./backend/weather
+        target: /usr/src/app_be
+    working_dir: /usr/src/app_be
+    depends_on:
+      - db
+    container_name: weather_python_container
+    command: python manage.py runserver 0.0.0.0:8000
+    # command: pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate
+
+  db:
+    # image: mysql:5.7.22
+    # restart: always
+    # environment: 
+    #   MYSQL_DATABASE: weather
+    #   MYSQL_USER: root
+    #   MYSQL_PASSWORD: root
+    #   MYSQL_ROOT_PASSWORD: root
+    # volumes:
+    #   - .dbdata:/var/lib/mysql
+    # ports:
+    #   - 33066:3306
+    image: postgres
+    restart: always
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=weather
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+    container_name: postgres_db
+
+  app:
+    image: app:react
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    #volumes:
+    #  - ./frontend/:/usr/src/app_fe
+    volumes:
+      - type: bind
+        source: ./frontend
+        target: /usr/src/app_fe
+    working_dir: /usr/src/app_fe
+    ports:
+      - 3000:3000
+    container_name: weather_react_container
+    command: npm start 
+#    command: npm install && npm install react-scripts --save && npm run build && npm start 
+    # && tail -F anything
+    
+volumes:
+  frontend:
+  dbdata:
+  weather:
+
