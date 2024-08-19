@@ -12,4 +12,12 @@ urlpatterns = [
             }
         ),
     ),
+    path(
+        "get_all",
+        WeatherViewSet.as_view(
+            {
+                "get": "get_all_weather_data",
+            }
+        ),
+    ),
 ]
