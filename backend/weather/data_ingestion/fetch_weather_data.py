@@ -10,6 +10,28 @@ from datetime import datetime
 # 	"longitude": 13.41,
 # 	"hourly": "temperature_2m"
 # }
+# Variable	            Unit	    Description
+# temperature_2m		°C (°F)	    Air temperature at 2 meters above ground
+# relative_humidity_2m  %	        Relative humidity at 2 meters above ground
+# wind_direction_10m
+
+# API return value:
+# On success a JSON object will be returned for instance:
+#   "latitude": 52.52,
+#   "longitude": 13.419,
+#   "elevation": 44.812,
+#   "generationtime_ms": 2.2119,
+#   "utc_offset_seconds": 0,
+#   "timezone": "Europe/Berlin",
+#   "timezone_abbreviation": "CEST",
+#   "hourly": {
+#     "time": ["2022-07-01T00:00", "2022-07-01T01:00", "2022-07-01T02:00", ...],
+#     "temperature_2m": [13, 12.7, 12.7, 12.5, 12.5, 12.8, 13, 12.9, 13.3, ...]
+#   },
+#   "hourly_units": {
+#     "temperature_2m": "°C"
+#   }
+
 
 # API URL with desired parameters
 API_URL = "https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&past_days={past_days}&hourly={hourly_parameters}"
