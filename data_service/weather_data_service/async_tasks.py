@@ -12,7 +12,7 @@ async def fetch_and_process_data(days):
 
 async def main():
     tasks = []
-    for days in range(1, 1, 10):
+    for days in range(1, 2, 10):
         print(f"fetch_and_process_data({days})")
         tasks.append(asyncio.create_task(fetch_and_process_data(days)))
         print(f"tasks.append(create_task(fetch_and_process_data({days})))")
