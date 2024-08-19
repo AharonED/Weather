@@ -4,6 +4,7 @@ import os
 import sys
 from django.conf import settings
 import subprocess
+import django
 
 try:
     import debugpy
@@ -15,6 +16,9 @@ except ModuleNotFoundError:
 def main():
     """Run administrative tasks."""
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "data_service.settings")
+
+    os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+    django.setup()
 
     if settings.DEBUG:
         if os.environ.get("RUN_MAIN") or os.environ.get("WERKZEUG_RUN_MAIN"):
