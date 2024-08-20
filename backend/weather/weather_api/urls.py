@@ -5,10 +5,10 @@ from .views import WeatherViewSet
 
 urlpatterns = [
     path(
-        "weather",
+        "test",
         WeatherViewSet.as_view(
             {
-                "get": "list",
+                "get": "test",
             }
         ),
     ),
@@ -25,6 +25,22 @@ urlpatterns = [
         WeatherViewSet.as_view(
             {
                 "get": "query_weather_data",
+            }
+        ),
+    ),
+    path(
+        "get_all_sum",
+        WeatherViewSet.as_view(
+            {
+                "get": "get_all_sum",
+            }
+        ),
+    ),
+    path(
+        "query_sum",
+        WeatherViewSet.as_view(
+            {
+                "get": "query_sum",
             }
         ),
     ),
