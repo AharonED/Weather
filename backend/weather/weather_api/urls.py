@@ -20,4 +20,12 @@ urlpatterns = [
             }
         ),
     ),
+    path(
+        "query",
+        WeatherViewSet.as_view(
+            {
+                "get": "query_weather_data",
+            }
+        ),
+    ),
 ]
