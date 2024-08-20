@@ -32,7 +32,7 @@ function App() {
       <h1>Weather Data</h1>
 
       <Grid container spacing={2}>
-        <Grid item xs={3}>
+        <Grid item xs={2}>
           <Sidebar setSelectedComponent={setSelectedComponent} />
         </Grid>
         <Grid item xs={9}>
