@@ -22,10 +22,17 @@ class WeatherEntry(models.Model):
 
 class DailyWeatherSummary(models.Model):
     date = models.DateField(primary_key=True)
-    average_temperature = models.FloatField()
-    max_temperature = models.FloatField()
-    min_temperature = models.FloatField()
+    average_temperature = models.FloatField(default=None, blank=True, null=True)
+    max_temperature = models.FloatField(default=None, blank=True, null=True)
+    min_temperature = models.FloatField(default=None, blank=True, null=True)
 
     class Meta:
         db_table = "DailyWeatherSummary"
         ordering = ["date"]  # Default ordering by date and time
+
+
+# For deleting all data using shell consol:
+# python manage.py shell
+# from django.db import models
+# from weather_data_service.models import DailyWeatherSummary
+# DailyWeatherSummary.objects.all().delete()
