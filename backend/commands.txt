@@ -11,6 +11,11 @@ py manage.py runserver
 cd .\weather\
 py manage.py startapp weather_api
 
+django-admin startproject data_service
+cd .\data_service\
+py manage.py startapp weather_data_service
+
+
 #We use django-environ package to manage .env in Django, let’s install it
 pip install django-environ
 pip install psycopg2

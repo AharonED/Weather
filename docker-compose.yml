@@ -68,17 +68,17 @@ services:
   app:
     image: app:react
     build:
-      context: ./frontend
+      context: ./frontend/weather-app
       dockerfile: Dockerfile
     #volumes:
     #  - ./frontend/:/usr/src/app_fe
     volumes:
       - type: bind
-        source: ./frontend
+        source: ./frontend/weather-app
         target: /usr/src/app_fe
     working_dir: /usr/src/app_fe
     ports:
-      - 3000:3000
+      - 3001:3000
     container_name: weather_react_container
     command: npm start 
 #    command: npm install && npm install react-scripts --save && npm run build && npm start 

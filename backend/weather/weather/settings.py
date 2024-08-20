@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "weather",
     "weather_api",
+    "data_ingestion",
 ]
 
 MIDDLEWARE = [
