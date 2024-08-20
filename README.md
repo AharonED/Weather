@@ -39,15 +39,16 @@ that uses four Docker containers for a modular and scalable architecture:
 **Accessing the Application:**
 
 -   **Frontend:** The React frontend application is accessible at http://localhost:3001/.
+-   **Database:** The PostgreSQL database is not directly accessible in this configuration.
+        If you whish investigating the DB, use tools like pgAdmin or command-line tools to interact with it.
 -   **Backend API:** The Django backend API is accessible at http://localhost:8000/.
-    (you won't typically need to access it directly as the React frontend makes API calls).
+       (you won't typically need to access it directly as the React frontend makes API calls).
 -   **Data Service:** The Django Data Service backend API is accessible at http://localhost:8001/,
-    **Note:** For this POC project we trigger the data fetch from the website by manual browsing the dedicated API:
-    http://localhost:8001/api/fetch
+    # Note:
+    For this POC project we trigger the data fetch from the website by manual browsing the dedicated API:
+    **http://localhost:8001/api/fetch**
     In real word we will implement an events which trigger this API, and it will be deployed as an cloud-function e.g. AWS lambda ans SQS.
-    
--   **Database:** The PostgreSQL database is not directly accessible in this configuration. If you whish investigating the DB, use tools like pgAdmin or command-line tools to interact with it.
- 
+     
 
 **APIs:**
 
