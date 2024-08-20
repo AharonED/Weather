@@ -1,23 +1,33 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import WeatherData from './components/WeatherData';
+import WeatherSummary from './components/WeatherSummary';
+import { getWeatherData, queryWeatherData, getDailyWeatherDataSum, queryDailyWeatherDataSum } from './services/api';
 
 function App() {
+  const [weatherData, setWeatherData] = useState([]);
+  const [weatherSummary, setWeatherSummary] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getWeatherData();
+      setWeatherData(data);
+    };
+
+    fetchData();
+  }, []);
+
+  const handleQuery = async (params) => {
+    const data = await queryWeatherData(params);
+    setWeatherSummary(data);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload. - New App@@!!! 
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Weather Data</h1>
+      <WeatherData data={weatherData} />
+      <WeatherSummary data={weatherSummary} />
+      {/* Add UI elements for querying data */}
     </div>
   );
 }

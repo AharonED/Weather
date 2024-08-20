@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://backend:8000/api/'; 
+const baseURL = 'http://localhost:8000/api'; 
 
 const getWeatherData = async () => {
   try {
