@@ -23,7 +23,7 @@ that uses four Docker containers for a modular and scalable architecture:
 
     **Bash**
 
-    docker-compose build
+    `docker-compose build`
 
 
     This will build Docker images for all four services.
@@ -32,7 +32,7 @@ that uses four Docker containers for a modular and scalable architecture:
 
     **Bash**
 
-    docker-compose up -d
+    `docker-compose up -d`
 
     The `-d` flag runs the containers in detached mode, allowing them to run in the background.
 
