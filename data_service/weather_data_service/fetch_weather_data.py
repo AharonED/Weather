@@ -17,20 +17,18 @@ from datetime import datetime
 
 # API return value:
 # On success a JSON object will be returned for instance:
-#   "latitude": 52.52,
-#   "longitude": 13.419,
-#   "elevation": 44.812,
-#   "generationtime_ms": 2.2119,
-#   "utc_offset_seconds": 0,
-#   "timezone": "Europe/Berlin",
-#   "timezone_abbreviation": "CEST",
-#   "hourly": {
+#
+# https://api.open-meteo.com/v1/forecast?latitude=31.5&longitude=34.75&past_days=10&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m
+#
+# {"latitude":31.5,"longitude":34.75,"generationtime_ms":8.02600383758545,
+# "utc_offset_seconds":0,"timezone":"GMT", "timezone_abbreviation":"GMT","elevation":170.0,
+# "hourly_units":{"time":"iso8601","temperature_2m":"°C","relative_humidity_2m":"%","wind_speed_10m":"km/h"},
+#  "hourly": {
 #     "time": ["2022-07-01T00:00", "2022-07-01T01:00", "2022-07-01T02:00", ...],
-#     "temperature_2m": [13, 12.7, 12.7, 12.5, 12.5, 12.8, 13, 12.9, 13.3, ...]
-#   },
-#   "hourly_units": {
-#     "temperature_2m": "°C"
-#   }
+#     "temperature_2m": [13, 12.7, 12.7, 12.5, 12.5, 12.8, 13, 12.9, 13.3, ...],
+#     "relative_humidity_2m":[93,92,91,92,86,77,66,58,51, ...],
+#     "wind_speed_10m":[4.3,4.6,4.6,5.1,5.9,7.6,9.1,10.7,12.3,14.0, ...]
+#   }}
 
 
 # API URL with desired parameters

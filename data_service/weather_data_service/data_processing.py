@@ -1,27 +1,6 @@
-from django.db.models import Avg
+from django.db.models import Avg, Min, Max
 from .models import WeatherEntry, DailyWeatherSummary
 from datetime import datetime
-
-
-# Function to process and store fetched data
-def process_and_store_data_0(data):
-    hourly_data = data["hourly"]
-    for time, temperature, humidity, wind_speed in zip(
-        hourly_data["time"],
-        hourly_data["temperature_2m"],
-        hourly_data["relative_humidity_2m"],
-        hourly_data["wind_speed_10m"],
-    ):
-        date_time = datetime.fromisoformat(time)
-        entry, created = WeatherEntry.objects.get_or_create(
-            date_time=date_time,
-            defaults={
-                "temperature": temperature,
-                "relative_humidity": humidity,
-                "wind_speed": wind_speed,
-            },
-        )
-        # Handle potential updates here if needed
 
 
 def process_and_store_data(data):
@@ -53,4 +32,15 @@ def process_and_store_data(data):
         daily_summary.average_temperature = WeatherEntry.objects.filter(
             date_time__date=date_only
         ).aggregate(Avg("temperature"))["temperature__avg"]
+
+        daily_summary.max_temperature = WeatherEntry.objects.filter(
+            date_time__date=date_only
+        ).aggregate(Max("temperature"))["temperature__max"]
+        daily_summary.min_temperature = WeatherEntry.objects.filter(
+            date_time__date=date_only
+        ).aggregate(Min("temperature"))["temperature__min"]
+        daily_summary.average_temperature = WeatherEntry.objects.filter(
+            date_time__date=date_only
+        ).aggregate(Avg("temperature"))["temperature__avg"]
+
         daily_summary.save()

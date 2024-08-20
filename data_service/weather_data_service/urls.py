@@ -5,10 +5,10 @@ from .views import WeatherViewSet
 
 urlpatterns = [
     path(
-        "weather",
+        "fetch",
         WeatherViewSet.as_view(
             {
-                "get": "list",
+                "get": "fetch",
             }
         ),
     ),

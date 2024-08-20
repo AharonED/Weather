@@ -5,6 +5,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
+from django.db.models import Q  # for filtering
 
 from .models import WeatherEntry
 from .serializers import WeatherEntrySerializer
@@ -24,8 +25,9 @@ class WeatherViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
     # @api_view(["GET"])
-    @permission_classes([IsAuthenticated])
+    # @permission_classes([IsAuthenticated])
     def query_weather_data(self, request):
+        # /api/query?start_date=2024-08-15&end_date=2024-08-19
         # Implement filtering based on request parameters (date range, thresholds)
         start_date = request.GET.get("start_date")
         end_date = request.GET.get("end_date")

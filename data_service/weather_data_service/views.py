@@ -14,8 +14,8 @@ from .async_tasks import main
 
 class WeatherViewSet(viewsets.ViewSet):
     # @api_view(["GET"])
-    @permission_classes([IsAuthenticated])
-    def list(self, request):  # /api/weather
+    # @permission_classes([IsAuthenticated])
+    def fetch(self, request):  # /api/fetch
         asyncio.run(main())
         weather = WeatherEntry.objects.all()
         serializer = WeatherEntrySerializer(instance=weather, many=True)

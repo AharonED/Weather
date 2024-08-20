@@ -13,6 +13,7 @@ class WeatherEntry(models.Model):
     wind_speed = models.FloatField()  # km/h        Wind speed at 10 meters above ground
 
     class Meta:
+        db_table = "WeatherEntry"
         ordering = ["date_time"]  # Default ordering by date and time
 
     def __str__(self):
@@ -22,3 +23,9 @@ class WeatherEntry(models.Model):
 class DailyWeatherSummary(models.Model):
     date = models.DateField(primary_key=True)
     average_temperature = models.FloatField()
+    max_temperature = models.FloatField()
+    min_temperature = models.FloatField()
+
+    class Meta:
+        db_table = "DailyWeatherSummary"
+        ordering = ["date"]  # Default ordering by date and time

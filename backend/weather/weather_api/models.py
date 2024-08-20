@@ -4,15 +4,12 @@ from django.db import models
 # Weather
 class WeatherEntry(models.Model):
     date_time = models.DateTimeField(primary_key=True)
-    temperature = (
-        models.FloatField()
-    )  # °C (°F)	    Air temperature at 2 meters above ground
-    relative_humidity = (
-        models.FloatField()
-    )  # %	        Relative humidity at 2 meters above ground
-    wind_speed = models.FloatField()  # km/h        Wind speed at 10 meters above ground
+    temperature = models.FloatField()  # °C Air temp. at 2 meters above ground
+    relative_humidity = models.FloatField()  # % humidity at 2 meters above ground
+    wind_speed = models.FloatField()  # km/h Wind speed at 10 meters above ground
 
     class Meta:
+        db_table = "WeatherEntry"
         ordering = ["date_time"]  # Default ordering by date and time
 
     def __str__(self):
@@ -22,3 +19,8 @@ class WeatherEntry(models.Model):
 class DailyWeatherSummary(models.Model):
     date = models.DateField(primary_key=True)
     average_temperature = models.FloatField()
+    max_temperature = models.FloatField()
+    min_temperature = models.FloatField()
+
+    class Meta:
+        db_table = "DailyWeatherSummary"
