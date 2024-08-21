@@ -72,11 +72,11 @@ class WeatherViewSet(viewsets.ViewSet):
                     {"error": "Invalid date format. Use YYYY-MM-DD"},
                     status=status.HTTP_400_BAD_REQUEST,
                 )
-            summaries = DailyWeatherSummary.objects.filter(
+            summaries = DailyWeatherSummary.objects.order_by("-date").filter(
                 date__range=(start_date, end_date)
             )
         else:
-            summaries = DailyWeatherSummary.objects.all()
+            summaries = DailyWeatherSummary.objects.all().order_by("-date")
 
         serializer = DailyWeatherSummarySerializer(summaries, many=True)
         return Response(serializer.data)

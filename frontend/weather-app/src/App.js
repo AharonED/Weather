@@ -5,6 +5,8 @@ import './App.css';
 import { getWeatherData, queryWeatherData, getDailyWeatherDataSum, queryDailyWeatherDataSum } from './services/api';
 import WeatherData from './components/WeatherData';
 import WeatherSummary from './components/WeatherSummary';
+import DailyWeatherChart from './components/DailyWeatherChart';
+
 import Sidebar from './components/Sidebar'; // New component for sidebar
 
 
@@ -29,15 +31,16 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Weather Data</h1>
+      <h1>Weather Forecast</h1>
 
       <Grid container spacing={2}>
         <Grid item xs={2}>
           <Sidebar setSelectedComponent={setSelectedComponent} />
         </Grid>
         <Grid item xs={9}>
-          {selectedComponent === 'weatherData' && <WeatherData data={weatherData} />}
-          {selectedComponent === 'weatherSummary' && <WeatherSummary data={weatherSummary} />}
+          {selectedComponent === 'weatherData' && <WeatherData data={[]} />}
+          {selectedComponent === 'weatherSummary' && <WeatherSummary data={[]} />}
+          {selectedComponent === 'weatherSummaryChart' && <DailyWeatherChart data={[]} />}
         </Grid>
       </Grid>
 

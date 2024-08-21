@@ -42,17 +42,6 @@ services:
     # command: pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate
 
   db:
-    # image: mysql:5.7.22
-    # restart: always
-    # environment: 
-    #   MYSQL_DATABASE: weather
-    #   MYSQL_USER: root
-    #   MYSQL_PASSWORD: root
-    #   MYSQL_ROOT_PASSWORD: root
-    # volumes:
-    #   - .dbdata:/var/lib/mysql
-    # ports:
-    #   - 33066:3306
     image: postgres
     restart: always
     volumes:
@@ -70,8 +59,6 @@ services:
     build:
       context: ./frontend/weather-app
       dockerfile: Dockerfile
-    #volumes:
-    #  - ./frontend/:/usr/src/app_fe
     volumes:
       - type: bind
         source: ./frontend/weather-app
