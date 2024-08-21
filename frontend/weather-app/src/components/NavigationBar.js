@@ -10,6 +10,7 @@ const NavigationBar = () => {
         </Typography>
         <Button color="inherit" href="/weather-data">Weather Data</Button>
         <Button color="inherit" href="/weather-summary">Weather Summary</Button>
+        <Button color="inherit" href="/weather-chart">Weather Chart</Button>
       </Toolbar>
     </AppBar>
   );
