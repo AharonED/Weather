@@ -15,11 +15,22 @@ services:
         target: /usr/src/app_be
     working_dir: /usr/src/app_be
     depends_on:
-      - db
-      - data_service
+      db:
+        condition: service_healthy
+      data_service:
+        condition: service_healthy      
     container_name: weather_python_container
-    command: python manage.py runserver 0.0.0.0:8000
-    # command: pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate
+    # command: python manage.py runserver 0.0.0.0:8000
+    ## command: pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate
+    command:
+      - /bin/bash
+      - -c
+      - |
+        python manage.py makemigrations &&
+        python manage.py migrate --fake-initial &&
+        python manage.py runserver 0.0.0.0:8000 
+
+
 
   data_service:
     build:
@@ -36,10 +47,25 @@ services:
         target: /usr/src/app_be
     working_dir: /usr/src/app_be
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     container_name: weather_data_service_container
-    command: python manage.py runserver 0.0.0.0:8000
+    healthcheck:
+      # test: "curl --fail --silent --write-out 'HTTP CODE : %{http_code}\n' --output /dev/null http://localhost:8000/api/fetch"
+      test: "curl --fail --silent --write-out 'HTTP CODE : %{http_code}\n' --output /dev/null http://localhost:8000/admin"
+      start_period: 10s
+      interval: 10s
+      timeout: 10s
+      retries: 10    
+    # command: python manage.py runserver 0.0.0.0:8000
     # command: pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate
+    command:
+      - /bin/bash
+      - -c
+      - |
+        python manage.py makemigrations &&
+        python manage.py migrate --fake-initial &&
+        python manage.py runserver 0.0.0.0:8000
 
   db:
     image: postgres
@@ -53,6 +79,12 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=admin
     container_name: postgres_db
+    healthcheck:
+          test: ["CMD-SHELL", "pg_isready -U postgres"]
+          start_period: 10s
+          interval: 10s
+          timeout: 30s
+          retries: 10
 
   app:
     image: app:react
@@ -64,6 +96,8 @@ services:
         source: ./frontend/weather-app
         target: /usr/src/app_fe
     working_dir: /usr/src/app_fe
+    depends_on:
+      - backend
     ports:
       - 3001:3000
     container_name: weather_react_container
@@ -73,6 +107,6 @@ services:
     
 volumes:
   frontend:
-  dbdata:
+  data:
   weather:
 
