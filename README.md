@@ -17,7 +17,7 @@ that uses four Docker containers for a modular and scalable architecture:
 
     **Bash**
 
-    git clone https://github.com/your-username/weather-app.git
+     git clone https://github.com/AharonED/Weather.git
 
 3.  **Build Docker Images:** Navigate to the project directory and run the following command:
 
