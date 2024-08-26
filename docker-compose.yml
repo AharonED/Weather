@@ -101,8 +101,9 @@ services:
     ports:
       - 3001:3000
     container_name: weather_react_container
-    command: npm start 
-#    command: npm install && npm install react-scripts --save && npm run build && npm start 
+    command: sh -c 'if [[ ! -d node_modules ]]; then npm install; fi && npm start'
+    # command: npm start 
+    # command: npm install && npm install react-scripts --save && npm run build && npm start 
     # && tail -F anything
     
 volumes:
