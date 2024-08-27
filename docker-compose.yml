@@ -9,11 +9,11 @@ services:
       - 5678:5678
     #volumes:
     #  - ./backend/weather:/usr/src/app_be
-    volumes:
-      - type: bind
-        source: ./backend/weather
-        target: /usr/src/app_be
-    working_dir: /usr/src/app_be
+    # volumes:
+    #   - type: bind
+    #     source: ./backend/weather
+    #     target: /usr/src/app_be
+    # working_dir: /usr/src/app_be
     depends_on:
       db:
         condition: service_healthy
@@ -41,11 +41,11 @@ services:
       # - 5678:5678
     #volumes:
     #  - ./backend/weather:/usr/src/app_be
-    volumes:
-      - type: bind
-        source: ./data_service
-        target: /usr/src/app_be
-    working_dir: /usr/src/app_be
+    # volumes:
+    #   - type: bind
+    #     source: ./data_service
+    #     target: /usr/src/app_be
+    # working_dir: /usr/src/app_be
     depends_on:
       db:
         condition: service_healthy
@@ -91,11 +91,11 @@ services:
     build:
       context: ./frontend/weather-app
       dockerfile: Dockerfile
-    volumes:
-      - type: bind
-        source: ./frontend/weather-app
-        target: /usr/src/app_fe
-    working_dir: /usr/src/app_fe
+    # volumes:
+    #   - type: bind
+    #     source: ./frontend/weather-app
+    #     target: /usr/src/app_fe
+    # working_dir: /usr/src/app_fe
     depends_on:
       - backend
     ports:
@@ -107,7 +107,7 @@ services:
     # && tail -F anything
     
 volumes:
-  frontend:
+  # frontend:
   data:
-  weather:
+  # weather:
 
