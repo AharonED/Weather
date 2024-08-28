@@ -24,6 +24,9 @@ def process_and_store_data(data):
             },
         )
 
+        # Currently the calculation is running for each weather data record, the code needed to be refactored,
+        # to perform the calculation only once!
+
         # Calculate daily average temperature
         try:
             daily_summary = DailyWeatherSummary.objects.get(date=date_only)

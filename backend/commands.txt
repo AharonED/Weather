@@ -25,6 +25,10 @@ pip3 install debugpy
 
 install -r requirements.txt  
 
+
+python manage.py makemigrations
+python manage.py migrate 
+
 ###
 pip3 install mysqlclient==1.4.6  
  pip3 install mysql-connector-python     
